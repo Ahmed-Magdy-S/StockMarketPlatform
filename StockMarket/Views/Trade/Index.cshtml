@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Trading Market";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @model StockMarket.Models.StockTrade;
+}
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <span>@Model.StockName</span>
+            <span>(@Model.StockSymbol)</span>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">$@Model.Price</h5>
+        </div>
+    </div>
+</div>
+
+
+
+
+<input type="hidden" id="FinnhubToken" value=@ViewBag.FinnhubToken />
+<input type="hidden" id="StockSymbol" value=@Model.StockSymbol />
+
+
+<script src="~/js/FinnhubService/lastPriceUpdates.js"></script>
