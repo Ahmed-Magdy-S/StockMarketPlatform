@@ -2,7 +2,7 @@
 {
     public class SellOrder
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public required string StockSymbol { get; set; }
         public required string StockName { get; set; }
         public DateTime DateAndTimeOfOrder { get; set; }

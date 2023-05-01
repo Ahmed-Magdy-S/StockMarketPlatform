@@ -8,10 +8,10 @@ namespace StockMarket.Infrastructure.DTO
     public class BuyOrderRequest
     {
         [Required]
-        public string? StockSymbol { get; set; }
+        public required string StockSymbol { get; set; }
 
         [Required]
-        public string? StockName { get; set;}
+        public required string StockName { get; set;}
       
         [MinDate("01/01/2000")]
         public DateTime DateAndTimeOfOrder { get; set; }

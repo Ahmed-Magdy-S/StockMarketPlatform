@@ -12,37 +12,59 @@ namespace StockMarket.WebMvc.Services
         private List<SellOrder> _sellOrders = new();
         public Task<BuyOrderResponse> CreateBuyOrder(BuyOrderRequest? buyOrderRequest)
         {
-            //The argument cannot be null
-            if (buyOrderRequest == null) throw new ArgumentNullException(nameof(buyOrderRequest), "The buyOrderRequest is null ");
-
-            //Model Validation
+            //Validation
             ModelValidation<BuyOrderRequest>.Validate(buyOrderRequest);
 
-            BuyOrderResponse buyOrderResponse = new () 
-            {
-                StockName = "M",
-                StockSymbol = buyOrderRequest.StockSymbol,
-                BuyOrderID = Guid.NewGuid()
-            };
-            
-            _buyOrders.Add(buyOrderRequest.ToBuyOrder());
+            //convert request to real entity
+            BuyOrder? buyOrder = buyOrderRequest?.ToBuyOrder();
 
-            return Task.FromResult(buyOrderResponse);
+            //convert the real enity into response object for sending to the user.
+            var buyOrderResponse = buyOrder?.ToBuyOrderResponse();
+
+            //Act as database
+            _buyOrders.Add(buyOrder!);
+
+            //Sending response object to the user
+            return Task.FromResult(buyOrderResponse!);
         }
 
         public Task<SellOrderResponse> CreateSellOrder(SellOrderRequest? sellOrderRequest)
         {
-            throw new NotImplementedException();
+            //validation
+            ModelValidation<SellOrderRequest>.Validate(sellOrderRequest);
+            
+            var sellOrder = sellOrderRequest?.ToSellOrder();
+
+            var sellOrderResponse = sellOrder?.ToSellOrderResponse();
+
+            _sellOrders.Add(sellOrder!);
+
+            return Task.FromResult(sellOrderResponse!);
         }
 
         public Task<List<BuyOrderResponse>> GetBuyOrders()
         {
-            throw new NotImplementedException();
+            List<BuyOrderResponse> buyOrdersResponseList = new();
+
+            foreach(var buyOrder in _buyOrders)
+            {
+                buyOrdersResponseList.Add(buyOrder.ToBuyOrderResponse());
+            }
+
+            return Task.FromResult(buyOrdersResponseList);
         }
 
         public Task<List<SellOrderResponse>> GetSellOrders()
         {
-            throw new NotImplementedException();
+            List<SellOrderResponse> sellOrderResponses = new();
+
+            foreach (var sellOrder in _sellOrders)
+            {
+                sellOrderResponses.Add(sellOrder.ToSellOrderResponse());
+            }
+
+            return Task.FromResult(sellOrderResponses);
+
         }
     }
 }

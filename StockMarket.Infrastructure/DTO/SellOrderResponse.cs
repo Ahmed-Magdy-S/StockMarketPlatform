@@ -1,4 +1,6 @@
-﻿namespace StockMarket.Infrastructure.DTO
+﻿using StockMarket.Core.Entities;
+
+namespace StockMarket.Infrastructure.DTO
 {
     public class SellOrderResponse
     {
@@ -9,5 +11,22 @@
         public uint Quantity { get; set; }
         public double Price { get; set; }
         public double TradeAmount { get; set; }
+    }
+
+    public static class ConvertToResponse
+    {
+        public static SellOrderResponse ToSellOrderResponse (this SellOrder response)
+        {
+            return new SellOrderResponse
+            {
+                StockName = response.StockName,
+                StockSymbol = response.StockSymbol,
+                Price = response.Price,
+                TradeAmount = response.Price * response.Quantity,
+                Quantity = response.Quantity,
+                SellOrderID = response.Id,
+                DateAndTimeOfOrder = response.DateAndTimeOfOrder
+            };
+        }
     }
 }
