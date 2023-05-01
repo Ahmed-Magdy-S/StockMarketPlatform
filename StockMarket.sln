@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockMarket.Core", "Entitie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockMarket.Infrastructure", "StockMarket.Infrastructure\StockMarket.Infrastructure.csproj", "{D369546C-D04E-4C51-B252-33B7D84C8C52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{9C58F7C6-CDC4-4504-9F5B-6575EA65B4FE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockMarket.Tests", "StockMarket.Tests\StockMarket.Tests.csproj", "{9C58F7C6-CDC4-4504-9F5B-6575EA65B4FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
