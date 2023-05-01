@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockMarket.WebMvc", "StockMarket.WebMvc\StockMarket.WebMvc.csproj", "{988DA665-A5C6-4642-B1AB-D34EDB84FCF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockMarket.Core", "Entities\StockMarket.Core.csproj", "{704D345F-2048-450C-8955-C21DFE7B6904}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockMarket.Core", "StockMarket.Core\StockMarket.Core.csproj", "{704D345F-2048-450C-8955-C21DFE7B6904}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockMarket.Infrastructure", "StockMarket.Infrastructure\StockMarket.Infrastructure.csproj", "{D369546C-D04E-4C51-B252-33B7D84C8C52}"
 EndProject
