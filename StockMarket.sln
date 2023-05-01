@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockMarket", "StockMarket\StockMarket.csproj", "{988DA665-A5C6-4642-B1AB-D34EDB84FCF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockMarket.WebMvc", "StockMarket.WebMvc\StockMarket.WebMvc.csproj", "{988DA665-A5C6-4642-B1AB-D34EDB84FCF3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockMarket.Core", "Entities\StockMarket.Core.csproj", "{704D345F-2048-450C-8955-C21DFE7B6904}"
 EndProject

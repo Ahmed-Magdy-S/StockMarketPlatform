@@ -1,6 +1,6 @@
-﻿using NuGet.ContentModel;
-using StockMarket.Core.DTO;
-using StockMarket.Services;
+﻿
+using StockMarket.Infrastructure.DTO;
+using StockMarket.WebMvc.Services;
 
 namespace Tests.Services;
 
@@ -144,11 +144,7 @@ public class StockServiceTest
         };
 
         DateTime testDateTime = new(2000,1,1);
-
-        //Act
-        _stockService.CreateBuyOrder(buyOrderRequest);
-
-
+        
         Assert.False(buyOrderRequest.DateAndTimeOfOrder > testDateTime);
         Assert.ThrowsAsync<ArgumentException>(async () =>
         {
@@ -172,13 +168,13 @@ public class StockServiceTest
             Quantity = 1,
             StockName = "Microsoft",
             StockSymbol = "MSFT",
-            DateAndTimeOfOrder = new DateTime(),
+            DateAndTimeOfOrder = DateTime.Now
         };
-
+        Assert.False(DateTime.Now <  new DateTime(2000,1,1));
         //Act
         BuyOrderResponse buyOrderResponse = await _stockService.CreateBuyOrder(buyOrderRequest);
 
-        Assert.NotEqual(Guid.Empty, buyOrderResponse.BuyOrderID);
+        Assert.NotEqual(buyOrderResponse.BuyOrderID, Guid.Empty );
     }
 
 

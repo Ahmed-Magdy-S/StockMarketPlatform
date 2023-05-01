@@ -1,4 +1,4 @@
-﻿namespace StockMarket.Models;
+﻿namespace StockMarket.WebMvc.Models;
 
 public class StockPriceQuote
 {

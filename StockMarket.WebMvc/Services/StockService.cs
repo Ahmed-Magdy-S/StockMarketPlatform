@@ -1,33 +1,33 @@
-﻿using StockMarket.Core.DTO;
-using StockMarket.ServiceInterfaces;
+﻿using StockMarket.Core.Entities;
+using StockMarket.Infrastructure.DTO;
+using StockMarket.Infrastructure.DTO.Infrastructure.Utils;
+using StockMarket.WebMvc.ServiceInterfaces;
 
-namespace StockMarket.Services
+namespace StockMarket.WebMvc.Services
 {
     public class StockService : IStockService
     {
+        //Acts as fake databases
+        private List<BuyOrder> _buyOrders = new();
+        private List<SellOrder> _sellOrders = new();
         public Task<BuyOrderResponse> CreateBuyOrder(BuyOrderRequest? buyOrderRequest)
         {
+            //The argument cannot be null
             if (buyOrderRequest == null) throw new ArgumentNullException(nameof(buyOrderRequest), "The buyOrderRequest is null ");
 
-            if (buyOrderRequest.Quantity < 1 ||
-                buyOrderRequest.Quantity > 100000 ||
-                buyOrderRequest.Price < 1 ||
-                buyOrderRequest.Price > 10000 ||
-                buyOrderRequest.StockSymbol == null ||
-                buyOrderRequest.DateAndTimeOfOrder < new DateTime(2000,1,1)
-                )
-            {
-                throw new ArgumentException("Some arguments are not valid");
-            }
+            //Model Validation
+            ModelValidation<BuyOrderRequest>.Validate(buyOrderRequest);
 
-            BuyOrderResponse buyOrderResponse = new BuyOrderResponse() 
+            BuyOrderResponse buyOrderResponse = new () 
             {
                 StockName = "M",
                 StockSymbol = buyOrderRequest.StockSymbol,
+                BuyOrderID = Guid.NewGuid()
             };
+            
+            _buyOrders.Add(buyOrderRequest.ToBuyOrder());
 
             return Task.FromResult(buyOrderResponse);
-
         }
 
         public Task<SellOrderResponse> CreateSellOrder(SellOrderRequest? sellOrderRequest)

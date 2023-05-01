@@ -1,8 +1,8 @@
-﻿using StockMarket.Models;
-using StockMarket.ServiceInterfaces;
-using System.Text.Json;
+﻿using System.Text.Json;
+using StockMarket.WebMvc.Models;
+using StockMarket.WebMvc.ServiceInterfaces;
 
-namespace StockMarket.Services
+namespace StockMarket.WebMvc.Services
 {
     public class FinnhubService : IFinnhubService
     {

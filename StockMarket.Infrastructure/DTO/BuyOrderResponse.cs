@@ -1,8 +1,8 @@
-﻿namespace StockMarket.Core.DTO
+﻿namespace StockMarket.Infrastructure.DTO
 {
-    public class SellOrderResponse
+    public class BuyOrderResponse
     {
-        public Guid SellOrderID { get; set; }
+        public Guid BuyOrderID { get; set; }
         public required string StockName { get; set; }
         public required string StockSymbol { get; set; }
         public DateTime DateAndTimeOfOrder { get; set; }

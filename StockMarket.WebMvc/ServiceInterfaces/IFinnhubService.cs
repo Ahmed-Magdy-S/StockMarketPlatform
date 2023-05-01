@@ -1,6 +1,6 @@
-﻿using StockMarket.Models;
+﻿using StockMarket.WebMvc.Models;
 
-namespace StockMarket.ServiceInterfaces
+namespace StockMarket.WebMvc.ServiceInterfaces
 {
     public interface IFinnhubService
     {

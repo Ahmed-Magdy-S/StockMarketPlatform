@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using StockMarket.Config;
-using StockMarket.Models;
-using StockMarket.ServiceInterfaces;
+using StockMarket.WebMvc.Config;
+using StockMarket.WebMvc.Models;
+using StockMarket.WebMvc.ServiceInterfaces;
 
-namespace StockMarket.Controllers
+namespace StockMarket.WebMvc.Controllers
 {
     [Route("[controller]")]
     public class TradeController : Controller

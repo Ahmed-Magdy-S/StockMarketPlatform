@@ -10,4 +10,8 @@
     <Folder Include="database\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Entities\StockMarket.Core.csproj" />
+  </ItemGroup>
+
 </Project>

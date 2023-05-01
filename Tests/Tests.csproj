@@ -24,7 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Entities\StockMarket.Core.csproj" />
     <ProjectReference Include="..\StockMarket.Infrastructure\StockMarket.Infrastructure.csproj" />
-    <ProjectReference Include="..\StockMarket\StockMarket.csproj" />
+    <ProjectReference Include="..\StockMarket.WebMvc\StockMarket.WebMvc.csproj" />
   </ItemGroup>
 
 </Project>
