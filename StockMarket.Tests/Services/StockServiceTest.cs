@@ -6,7 +6,7 @@ namespace Tests.Services;
 
 public class StockServiceTest
 {
-    private StockService _stockService;
+    private readonly StockService _stockService;
 
     public StockServiceTest()
     {
@@ -41,7 +41,7 @@ public class StockServiceTest
     public void CreateBuyOrder_ZeroQuantity()
     {
         //Arrange
-        BuyOrderRequest? buyOrderRequest = new(){ Quantity = 0};
+        BuyOrderRequest? buyOrderRequest = new(){ Quantity = 0,StockName = "",StockSymbol = ""};
 
         //Assert
         Assert.ThrowsAsync<ArgumentException>(async () =>
@@ -60,7 +60,7 @@ public class StockServiceTest
     public void CreateBuyOrder_ExceedingAllowedQuantity()
     {
         //Arrange
-        BuyOrderRequest? buyOrderRequest = new() { Quantity = 100001 };
+        BuyOrderRequest? buyOrderRequest = new() { Quantity = 100001, StockName = "", StockSymbol = "" };
 
         //Assert
         Assert.ThrowsAsync<ArgumentException>(async () =>
@@ -78,7 +78,7 @@ public class StockServiceTest
     public void CreateBuyOrder_ZeroPrice()
     {
         //Arrange
-        BuyOrderRequest? buyOrderRequest = new() { Price = 0 };
+        BuyOrderRequest? buyOrderRequest = new() { Price = 0 , StockName = "", StockSymbol = "" };
 
         //Assert
         Assert.ThrowsAsync<ArgumentException>(async () =>
@@ -119,7 +119,7 @@ public class StockServiceTest
     public void CreateBuyOrder_NullSymbol()
     {
         //Arrange
-        BuyOrderRequest? buyOrderRequest = new() { StockSymbol = null };
+        BuyOrderRequest? buyOrderRequest = new() { StockSymbol = null, StockName = "" };
 
         //Assert
         Assert.ThrowsAsync<ArgumentException>(async () =>
@@ -140,7 +140,9 @@ public class StockServiceTest
         //Arrange
         BuyOrderRequest? buyOrderRequest = new()
         {
-            DateAndTimeOfOrder = new DateTime(1999,12,31)
+            DateAndTimeOfOrder = new DateTime(1999,12,31),
+            StockName = "",
+            StockSymbol = ""
         };
 
         DateTime testDateTime = new(2000,1,1);
@@ -176,9 +178,21 @@ public class StockServiceTest
 
         Assert.NotEqual(buyOrderResponse.BuyOrderID, Guid.Empty );
     }
+    #endregion
 
+    #region CreateSellOrder
 
+    [Fact]
+    public void CreateSellOrder_NullArgument()
+    {
+        //Arrange
+        SellOrderRequest? sellOrderRequest = null;
 
+        Assert.ThrowsAsync<ArgumentNullException>(async () =>
+        {
+            await _stockService.CreateSellOrder(sellOrderRequest);
+        });
+    }
 
     #endregion
 }

@@ -8,8 +8,8 @@ namespace StockMarket.WebMvc.Services
     public class StockService : IStockService
     {
         //Acts as fake databases
-        private List<BuyOrder> _buyOrders = new();
-        private List<SellOrder> _sellOrders = new();
+        private readonly List<BuyOrder> _buyOrders = new();
+        private readonly List<SellOrder> _sellOrders = new();
         public Task<BuyOrderResponse> CreateBuyOrder(BuyOrderRequest? buyOrderRequest)
         {
             //Validation

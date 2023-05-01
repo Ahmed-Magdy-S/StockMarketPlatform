@@ -13,7 +13,7 @@ namespace StockMarket.Infrastructure.DTO
         public double TradeAmount { get; set; }
     }
 
-    public static class ConvertToResponse
+    public static class ConvertToSellOrderResponse
     {
         public static SellOrderResponse ToSellOrderResponse (this SellOrder response)
         {
