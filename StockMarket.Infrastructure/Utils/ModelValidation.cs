@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace StockMarket.Infrastructure.DTO.Infrastructure.Utils;
+namespace StockMarket.Infrastructure.Utils;
 
 public static class ModelValidation<T>
 {

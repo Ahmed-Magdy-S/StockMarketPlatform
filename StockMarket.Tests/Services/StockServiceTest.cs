@@ -19,13 +19,13 @@ public class StockServiceTest
     ///  When you supply BuyOrderRequest as null, it should throw ArgumentNullException.
     /// </summary>
     [Fact]
-    public void CreateBuyOrder_NullBuyOrderRequest()
+    public async Task CreateBuyOrder_NullBuyOrderRequest()
     {
         //Arrange
         BuyOrderRequest? buyOrderRequest = null;
 
         //Assert
-        Assert.ThrowsAsync<ArgumentNullException>(async () =>
+        await Assert.ThrowsAsync<ArgumentNullException>(async () =>
         {
             //Act
             await _stockService.CreateBuyOrder(buyOrderRequest);
@@ -38,13 +38,13 @@ public class StockServiceTest
     /// (as per the specification, minimum is 1), it should throw ArgumentException.
     /// </summary>
     [Fact]
-    public void CreateBuyOrder_ZeroQuantity()
+    public async Task CreateBuyOrder_ZeroQuantity()
     {
         //Arrange
         BuyOrderRequest? buyOrderRequest = new(){ Quantity = 0,StockName = "",StockSymbol = ""};
 
         //Assert
-        Assert.ThrowsAsync<ArgumentException>(async () =>
+        await Assert.ThrowsAsync<ArgumentException>(async () =>
         {
             //Act
              await _stockService.CreateBuyOrder(buyOrderRequest);
@@ -57,13 +57,13 @@ public class StockServiceTest
     /// </summary>
 
     [Fact]
-    public void CreateBuyOrder_ExceedingAllowedQuantity()
+    public async Task CreateBuyOrder_ExceedingAllowedQuantity()
     {
         //Arrange
         BuyOrderRequest? buyOrderRequest = new() { Quantity = 100001, StockName = "", StockSymbol = "" };
 
         //Assert
-        Assert.ThrowsAsync<ArgumentException>(async () =>
+        await Assert.ThrowsAsync<ArgumentException>(async () =>
         {
             //Act
             await _stockService.CreateBuyOrder(buyOrderRequest);
@@ -75,13 +75,13 @@ public class StockServiceTest
     /// (as per the specification, minimum is 1), it should throw ArgumentException.
     /// </summary>
     [Fact]
-    public void CreateBuyOrder_ZeroPrice()
+    public async Task CreateBuyOrder_ZeroPrice()
     {
         //Arrange
         BuyOrderRequest? buyOrderRequest = new() { Price = 0 , StockName = "", StockSymbol = "" };
 
         //Assert
-        Assert.ThrowsAsync<ArgumentException>(async () =>
+        await Assert.ThrowsAsync<ArgumentException>(async () =>
         {
             //Act
             await _stockService.CreateBuyOrder(buyOrderRequest);
@@ -93,7 +93,7 @@ public class StockServiceTest
     /// maximum is 10000), it should throw ArgumentException.
     /// </summary>
     [Fact]
-    public void CreateBuyOrder_ExceedingAllowedPrice()
+    public async Task CreateBuyOrder_ExceedingAllowedPrice()
     {
         //Arrange
         BuyOrderRequest? buyOrderRequest = new()
@@ -104,7 +104,7 @@ public class StockServiceTest
         };
 
         //Assert
-        Assert.ThrowsAsync<ArgumentException>(async () =>
+        await Assert.ThrowsAsync<ArgumentException>(async () =>
         {
             //Act
             await _stockService.CreateBuyOrder(buyOrderRequest);
@@ -116,13 +116,13 @@ public class StockServiceTest
     /// stock symbol can't be null), it should throw ArgumentException.
     /// </summary>
     [Fact]
-    public void CreateBuyOrder_NullSymbol()
+    public async Task CreateBuyOrder_NullSymbol()
     {
         //Arrange
         BuyOrderRequest? buyOrderRequest = new() { StockSymbol = null, StockName = "" };
 
         //Assert
-        Assert.ThrowsAsync<ArgumentException>(async () =>
+        await Assert.ThrowsAsync<ArgumentException>(async () =>
         {
             //Act
             await _stockService.CreateBuyOrder(buyOrderRequest);
@@ -135,7 +135,7 @@ public class StockServiceTest
     /// newer date than 2000-01-01), it should throw ArgumentException
     /// </summary>
     [Fact]
-    public void CreateBuyOrder_OlderOrderDate()
+    public async Task CreateBuyOrder_OlderOrderDate()
     {
         //Arrange
         BuyOrderRequest? buyOrderRequest = new()
@@ -148,7 +148,7 @@ public class StockServiceTest
         DateTime testDateTime = new(2000,1,1);
         
         Assert.False(buyOrderRequest.DateAndTimeOfOrder > testDateTime);
-        Assert.ThrowsAsync<ArgumentException>(async () =>
+        await Assert.ThrowsAsync<ArgumentException>(async () =>
         {
             await _stockService.CreateBuyOrder(buyOrderRequest);
 
@@ -161,7 +161,7 @@ public class StockServiceTest
     /// auto-generated BuyOrderID (guid).
     /// </summary>
     [Fact]
-    public async void CreateBuyOrder_ValidData()
+    public async Task CreateBuyOrder_ValidData()
     {
         //Arrange
         BuyOrderRequest buyOrderRequest = new()
@@ -183,17 +183,32 @@ public class StockServiceTest
     #region CreateSellOrder
 
     [Fact]
-    public void CreateSellOrder_NullArgument()
+    public async Task CreateSellOrder_NullArgument()
     {
         //Arrange
         SellOrderRequest? sellOrderRequest = null;
 
-        Assert.ThrowsAsync<ArgumentNullException>(async () =>
+        await Assert.ThrowsAsync<ArgumentNullException>(async () =>
         {
             await _stockService.CreateSellOrder(sellOrderRequest);
         });
     }
 
+    [Fact]
+    public async Task CreateSellOrder_ZeroQuantity()
+    {
+        //Arrange
+        SellOrderRequest sellOrderRequest = new() {Quantity = 0,StockName = "",StockSymbol = ""};
+        
+        //Assert
+        await Assert.ThrowsAsync<ArgumentException>(async () =>
+        {
+            //Act
+            await _stockService.CreateSellOrder(sellOrderRequest);
+        });
+    }
+    
+    
     #endregion
 }
 
