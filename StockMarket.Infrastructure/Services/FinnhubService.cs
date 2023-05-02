@@ -1,8 +1,9 @@
 ﻿using System.Text.Json;
+using Microsoft.Extensions.Configuration;
 using StockMarket.Core.DTO;
 using StockMarket.Core.ServiceInterfaces;
 
-namespace StockMarket.WebMvc.Services
+namespace StockMarket.Infrastructure.Services
 {
     public class FinnhubService : IFinnhubService
     {
