@@ -3,7 +3,7 @@ using StockMarket.Core.DTO;
 using StockMarket.Infrastructure.Utils;
 using StockMarket.Core.ServiceInterfaces;
 
-namespace StockMarket.WebMvc.Services
+namespace StockMarket.Infrastructure.Services
 {
     public class StockService : IStockService
     {

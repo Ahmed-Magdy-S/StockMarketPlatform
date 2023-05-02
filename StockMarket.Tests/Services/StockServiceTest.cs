@@ -1,6 +1,6 @@
 ﻿
 using StockMarket.Core.DTO;
-using StockMarket.WebMvc.Services;
+using StockMarket.Infrastructure.Services;
 
 namespace Tests.Services;
 
