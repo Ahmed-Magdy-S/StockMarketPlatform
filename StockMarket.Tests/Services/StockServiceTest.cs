@@ -208,7 +208,208 @@ public class StockServiceTest
         });
     }
     
+    [Fact]
+    public async Task CreateSellOrder_ExceedMaxQuantity()
+    {
+        //Arrange
+        SellOrderRequest sellOrderRequest = new() {Quantity = 100001,StockName = "",StockSymbol = ""};
+        
+        //Assert
+        await Assert.ThrowsAsync<ArgumentException>(async () =>
+        {
+            //Act
+            await _stockService.CreateSellOrder(sellOrderRequest);
+        });
+    }
+    [Fact]
+    public async Task CreateSellOrder_ZeroPrice()
+    {
+        //Arrange
+        SellOrderRequest sellOrderRequest = new() {Price = 0,StockName = "",StockSymbol = ""};
+        
+        //Assert
+        await Assert.ThrowsAsync<ArgumentException>(async () =>
+        {
+            //Act
+            await _stockService.CreateSellOrder(sellOrderRequest);
+        });
+    }
     
+    [Fact]
+    public async Task CreateSellOrder_ExceedMaxPrice()
+    {
+        //Arrange
+        SellOrderRequest sellOrderRequest = new() {Price = 10001,StockName = "",StockSymbol = ""};
+        
+        //Assert
+        await Assert.ThrowsAsync<ArgumentException>(async () =>
+        {
+            //Act
+            await _stockService.CreateSellOrder(sellOrderRequest);
+        });
+    }
+    
+    [Fact]
+    public async Task CreateSellOrder_NullStockSymbol()
+    {
+        //Arrange
+        SellOrderRequest sellOrderRequest = new() {Price = 1,StockName = "",StockSymbol = null};
+        
+        //Assert
+        await Assert.ThrowsAsync<ArgumentException>(async () =>
+        {
+            //Act
+            await _stockService.CreateSellOrder(sellOrderRequest);
+        });
+    }
+
+    [Fact]
+    public async Task CreateSellOrder_InvalidDateAndTime()
+    {
+        //Arrange
+        SellOrderRequest sellOrderRequest = new() {StockName = "Microsoft",StockSymbol = "MS", DateAndTimeOfOrder = new DateTime(1999,12,31)};
+        
+        //Assert
+        await Assert.ThrowsAsync<ArgumentException>(async () =>
+        {
+            //Act
+            await _stockService.CreateSellOrder(sellOrderRequest);
+        });
+
+    }
+    
+    [Fact]
+    public async Task CreateSellOrder_ValidData()
+    {
+        //Arrange
+        SellOrderRequest sellOrderRequest = new()
+        {
+            Price = 1,
+            Quantity = 1,
+            StockName = "Microsoft",
+            StockSymbol = "MSFT",
+            DateAndTimeOfOrder = DateTime.Now
+        };
+        Assert.False(DateTime.Now <  new DateTime(2000,1,1));
+        //Act
+        var sellOrderResponse = await _stockService.CreateSellOrder(sellOrderRequest);
+
+        //Assert
+        Assert.NotEqual(sellOrderResponse.SellOrderID, Guid.Empty );
+    }
+    #endregion
+
+
+    #region GetAllBuyOrders
+
+    [Fact]
+    public async Task GetAllBuyOrders_ReturnEmptyList()
+    {
+        //Act
+        var list = await _stockService.GetBuyOrders();
+        
+        //Assert
+        Assert.Empty(list);
+        
+    }
+    
+    [Fact]
+    public async Task GetAllBuyOrders_CheckAddedOrders()
+    {
+        //Arrange
+        List<BuyOrderRequest> buyOrderRequestsList = new()
+        {
+            new BuyOrderRequest
+            {
+                StockName = "Microsoft",
+                StockSymbol = "MS",
+                Quantity = 2,
+                Price = 2,
+                DateAndTimeOfOrder = DateTime.Now
+            },
+            new BuyOrderRequest
+            {
+                StockName = "Google",
+                StockSymbol = "Go",
+                Quantity = 2,
+                Price = 2,
+                DateAndTimeOfOrder = DateTime.Now
+            },
+        };
+
+        List<BuyOrderResponse> buyOrderResponsesList = new();
+
+        foreach (var order in buyOrderRequestsList)
+        {
+            var buyOrderResponse = await _stockService.CreateBuyOrder(order);
+            buyOrderResponsesList.Add(buyOrderResponse);
+        }
+        
+        //Act
+        var list = await _stockService.GetBuyOrders();
+        
+        //Assert
+        Assert.NotEmpty(list);
+        Assert.Equal(list.Count, buyOrderRequestsList.Count);
+        Assert.Equal(list.Count, buyOrderResponsesList.Count);
+    }
+
+    #endregion
+
+    #region GetAllSellOrders
+
+    [Fact]
+    public async Task GetAllSellOrders_ReturnEmptyList()
+    {
+        //Act
+        var list = await _stockService.GetSellOrders();
+        
+        //Assert
+        Assert.Empty(list);
+        
+    }
+
+      
+    [Fact]
+    public async Task GetAllSellOrders_CheckAddedOrders()
+    {
+        //Arrange
+        List<SellOrderRequest> sellOrderRequestsList = new()
+        {
+            new SellOrderRequest
+            {
+                StockName = "Microsoft",
+                StockSymbol = "MS",
+                Quantity = 2,
+                Price = 2,
+                DateAndTimeOfOrder = DateTime.Now
+            },
+            new SellOrderRequest
+            {
+                StockName = "Google",
+                StockSymbol = "Go",
+                Quantity = 2,
+                Price = 2,
+                DateAndTimeOfOrder = DateTime.Now
+            },
+        };
+
+        List<SellOrderResponse> sellOrderResponsesList = new();
+
+        foreach (var order in sellOrderRequestsList)
+        {
+            var sellOrderResponse = await _stockService.CreateSellOrder(order);
+            sellOrderResponsesList.Add(sellOrderResponse);
+        }
+        
+        //Act
+        var list = await _stockService.GetSellOrders();
+        
+        //Assert
+        Assert.NotEmpty(list);
+        Assert.Equal(list.Count, sellOrderResponsesList.Count);
+        Assert.Equal(list.Count, sellOrderRequestsList.Count);
+    }
+
     #endregion
 }
-
