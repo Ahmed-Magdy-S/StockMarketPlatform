@@ -1,5 +1,5 @@
+using StockMarket.Core.ServiceInterfaces;
 using StockMarket.WebMvc.Config;
-using StockMarket.WebMvc.ServiceInterfaces;
 using StockMarket.WebMvc.Services;
 
 var builder = WebApplication.CreateBuilder(args);

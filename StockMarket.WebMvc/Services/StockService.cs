@@ -1,7 +1,7 @@
 ﻿using StockMarket.Core.Entities;
-using StockMarket.Infrastructure.DTO;
+using StockMarket.Core.DTO;
 using StockMarket.Infrastructure.Utils;
-using StockMarket.WebMvc.ServiceInterfaces;
+using StockMarket.Core.ServiceInterfaces;
 
 namespace StockMarket.WebMvc.Services
 {

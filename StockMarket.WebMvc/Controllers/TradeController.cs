@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using StockMarket.Core.DTO;
+using StockMarket.Core.ServiceInterfaces;
 using StockMarket.WebMvc.Config;
-using StockMarket.WebMvc.Models;
-using StockMarket.WebMvc.ServiceInterfaces;
 
 namespace StockMarket.WebMvc.Controllers
 {

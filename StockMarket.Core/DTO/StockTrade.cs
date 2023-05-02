@@ -1,4 +1,4 @@
-﻿namespace StockMarket.WebMvc.Models
+﻿namespace StockMarket.Core.DTO
 {
     public class StockTrade
     {

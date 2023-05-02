@@ -1,6 +1,7 @@
-﻿using StockMarket.WebMvc.Models;
+﻿
+using StockMarket.Core.DTO;
 
-namespace StockMarket.WebMvc.ServiceInterfaces
+namespace StockMarket.Core.ServiceInterfaces
 {
     public interface IFinnhubService
     {

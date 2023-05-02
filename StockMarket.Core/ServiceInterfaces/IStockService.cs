@@ -1,7 +1,7 @@
 ﻿
-using StockMarket.Infrastructure.DTO;
+using StockMarket.Core.DTO;
 
-namespace StockMarket.WebMvc.ServiceInterfaces
+namespace StockMarket.Core.ServiceInterfaces
 {
     public interface IStockService
     {

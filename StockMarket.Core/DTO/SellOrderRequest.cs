@@ -2,7 +2,7 @@
 using StockMarket.Core.Entities;
 using StockMarket.Infrastructure.Utils;
 
-namespace StockMarket.Infrastructure.DTO
+namespace StockMarket.Core.DTO
 {
     public class SellOrderRequest
     {

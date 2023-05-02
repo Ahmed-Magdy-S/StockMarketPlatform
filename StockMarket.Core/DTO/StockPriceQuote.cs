@@ -1,5 +1,4 @@
-﻿namespace StockMarket.WebMvc.Models;
-
+﻿namespace StockMarket.Core.DTO;
 public class StockPriceQuote
 {
     public double CurrentPrice { get; set; }

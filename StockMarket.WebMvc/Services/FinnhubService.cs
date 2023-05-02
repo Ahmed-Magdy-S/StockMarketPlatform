@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
-using StockMarket.WebMvc.Models;
-using StockMarket.WebMvc.ServiceInterfaces;
+using StockMarket.Core.DTO;
+using StockMarket.Core.ServiceInterfaces;
 
 namespace StockMarket.WebMvc.Services
 {

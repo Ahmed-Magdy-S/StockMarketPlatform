@@ -1,6 +1,6 @@
 ﻿using StockMarket.Core.Entities;
 
-namespace StockMarket.Infrastructure.DTO
+namespace StockMarket.Core.DTO
 {
     public class SellOrderResponse
     {
